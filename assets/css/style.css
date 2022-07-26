@@ -9,3 +9,17 @@ body section div {
     display: flex;
     justify-content: center;
 }
+
+body section div{
+    display: block;
+    margin: auto;
+}
+
+h2 {
+    width:35%;
+    justify-content: space-around;
+}
+
+.choice {
+background-color: rgb(73, 206, 216);
+}

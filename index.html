@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CSS Box Styling</title>
+    <title>Comp-Sci Skills Test</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
   <body>
     <header>
         <div class="header">
-            <a id="highscore">highscore</a> 
+            <a id="highscore">highscores</a> 
             <p id="seconds-left">seconds</p>
         </div>
     </header>
-    <section>
+    <section class="container">
         <div>
-            <h1 id="title">Title</h1>
+            <h1 id="title">Welcome to the computer science skills test!</h1>
+            <p id="subtitle">You will tested on your knowledge of computer science. Your score is the amount of time left when you finish the test, if you do. Each wrong answer will deduct from you time left!</p>
+            <input id="enter-name" placeholder="Name" hidden="true">
         </div>
         <div>
-            <h2 id="questions">Lorem ipsum dolor sit amet.</h2>
-            <ul id="answers"></ul>
+            <ol id="answers">
+              <button id="a1" class="choice"></button>
+              <button id="a2" class="choice"></button>
+              <button id="a3" class="choice"></button>
+              <button id="a4" class="choice"></button>
+            </ol>
+        </div>
+        <div>
+          <button id="start-button">Start Quiz</button>
         </div>
     </section>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>

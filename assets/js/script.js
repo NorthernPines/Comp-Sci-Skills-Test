@@ -26,3 +26,72 @@
 // button to go back to quiz
 //      link to opening page
 // button to clear highscores
+
+var questions = ["What is the git command to create a new file in terminal?", "What is the keyboard shortcut to paste?", "What is the '|' character not called"];
+var ans1 = ["git push", "alt p", "divider"];
+var ans2 = ["git touch", "shift a", "pipe"];
+var ans3 = ["git new file", "right-click, paste", "vertical slash"];
+var ans4 = ["git mkdr", "ctrl v", "pike"];
+var ansC = ["a2", "a4", "a1"];
+
+var displayQ = document.querySelector('#title');
+var displayA1 = document.querySelector('#a1');
+var displayA2 = document.querySelector('#a2');
+var displayA3 = document.querySelector('#a3');
+var displayA4 = document.querySelector('#a4');
+var startButton = document.querySelector('#start-button');
+var choices = document.querySelector('#answers');
+var subtitle = document.querySelector('#subtitle');
+
+var currentQ = 0;
+
+displayA1.setAttribute("style", "visibility: hidden");
+displayA2.setAttribute("style", "visibility: hidden");
+displayA3.setAttribute("style", "visibility: hidden");
+displayA4.setAttribute("style", "visibility: hidden");
+
+startButton.addEventListener("click", function(){
+    displayQuestion();
+})
+
+function displayQuestion() {
+    displayQ.textContent = questions[currentQ];
+
+    displayA1.setAttribute("style", "visibility:shown");
+    displayA2.setAttribute("style", "visibility:shown");
+    displayA3.setAttribute("style", "visibility:shown");
+    displayA4.setAttribute("style", "visibility:shown");
+
+    displayA1.textContent = ans1[currentQ];
+    displayA2.textContent = ans2[currentQ];
+    displayA3.textContent = ans3[currentQ];
+    displayA4.textContent = ans4[currentQ];
+
+    startButton.style.visibility = "hidden";
+    subtitle.textContent = " ";
+}
+
+choices.addEventListener('click', function(event){
+    var target = event.target.id;
+    console.log(target);
+
+    if (target == ansC[currentQ]){
+        console.log("correct");
+    } else {
+        //deduct time
+    }
+    if (currentQ < (questions.length - 1)){
+        currentQ++;
+        displayQuestion();
+    } else {
+        displayFinalScore();
+    }
+})
+
+function displayFinalScore() {
+    displayQ.textContent = "Test over";
+
+    subtitle.textContent = "Your final score is " ;
+    document.querySelector("#enter-name").hidden = false;
+    choices.hidden = true;
+}
