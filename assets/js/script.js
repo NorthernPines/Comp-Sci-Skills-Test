@@ -45,11 +45,6 @@ var subtitle = document.querySelector('#subtitle');
 
 var currentQ = 0;
 
-displayA1.setAttribute("style", "visibility: hidden");
-displayA2.setAttribute("style", "visibility: hidden");
-displayA3.setAttribute("style", "visibility: hidden");
-displayA4.setAttribute("style", "visibility: hidden");
-
 startButton.addEventListener("click", function(){
     displayQuestion();
 })
@@ -57,10 +52,7 @@ startButton.addEventListener("click", function(){
 function displayQuestion() {
     displayQ.textContent = questions[currentQ];
 
-    displayA1.setAttribute("style", "visibility:shown");
-    displayA2.setAttribute("style", "visibility:shown");
-    displayA3.setAttribute("style", "visibility:shown");
-    displayA4.setAttribute("style", "visibility:shown");
+    choices.hidden = false;
 
     displayA1.textContent = ans1[currentQ];
     displayA2.textContent = ans2[currentQ];

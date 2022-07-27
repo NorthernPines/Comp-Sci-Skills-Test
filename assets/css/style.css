@@ -21,5 +21,11 @@ h2 {
 }
 
 .choice {
-background-color: rgb(73, 206, 216);
+    background-color: rgb(73, 206, 216);
+}
+
+.container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
