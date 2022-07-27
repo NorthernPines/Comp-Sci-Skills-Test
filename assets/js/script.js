@@ -27,6 +27,7 @@
 //      link to opening page
 // button to clear highscores
 
+//creating variables for the questions and answers, as well as which answers are correct
 var questions = ["What is the git command to create a new file in terminal?", "What is the keyboard shortcut to paste?", "What is the '|' character not called"];
 var ans1 = ["git push", "alt p", "divider"];
 var ans2 = ["git touch", "shift a", "pipe"];
@@ -34,6 +35,7 @@ var ans3 = ["git new file", "right-click, paste", "vertical slash"];
 var ans4 = ["git mkdr", "ctrl v", "pike"];
 var ansC = ["a2", "a4", "a1"];
 
+//creating query selector variables for where we need
 var displayQ = document.querySelector('#title');
 var displayA1 = document.querySelector('#a1');
 var displayA2 = document.querySelector('#a2');
@@ -43,56 +45,57 @@ var startButton = document.querySelector('#start-button');
 var choices = document.querySelector('#answers');
 var subtitle = document.querySelector('#subtitle');
 var scoreEl = document.querySelector('#seconds-left');
-var score = 100;
 
+var score = 100;
+var finalScore;
 var currentQ = 0;
 
 startButton.addEventListener("click", function(){
-    quiz();
-})
+    displayQuestion();
 
-function quiz() {
-
+    
     scoreTimer = setInterval(function () {
         score = score - 1;
         scoreEl.textContent = score + "seconds left";
-        
-        displayQuestion();
-
-        choices.addEventListener('click', function(event){
-            var target = event.target.id;
-            console.log(target);
-        
-            if (target == ansC[currentQ]){
-                if (currentQ < (questions.length - 1)){
-                    currentQ++;
-                    displayQuestion();
-                } else {
-                    displayFinalScore();
-                }
-            } else {
-                score -= 10;
-                if (currentQ < (questions.length - 1)){
-                    currentQ++;
-                    displayQuestion();
-                } else {
-                    displayFinalScore();
-                }
-                
-            }
-
-           
-        })
+    
 
     }, 1000);
+})
 
-}
+
+
+choices.addEventListener('click', function(event){
+    var target = event.target.id;
+    console.log(target);
+
+    if (target == ansC[currentQ]){
+        if (currentQ < (questions.length - 1)){
+            currentQ++;
+            displayQuestion();
+        } else {
+            finalScore = score;
+            displayFinalScore();
+        }
+    } else {
+        score -= 10;
+        if (currentQ < (questions.length - 1)){
+            currentQ++;
+            displayQuestion();
+        } else {
+            finalScore = score;
+            displayFinalScore();
+        }
+        
+    }
+
+})
 
 
   function displayFinalScore() {
+    scoreEl.hidden = true;
     displayQ.textContent = "Test over";
 
-    subtitle.textContent = "Your final score is " ;
+    subtitle.textContent = "Your final score is " + finalScore;
     document.querySelector("#enter-name").hidden = false;
     choices.hidden = true;
 }

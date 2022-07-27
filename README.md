@@ -18,4 +18,5 @@ Constructing a quiz to test ones knowledge of computer science
 
 https://northernpines.github.io/Comp-Sci-Skills-Test/
 
-![Quiz home page](./assets/images/Screenshot.PNG)
+![Quiz home page](./assets/images/Screenshot(1).PNG)
+![Quiz home page](./assets/images/Screenshot(2).PNG)
