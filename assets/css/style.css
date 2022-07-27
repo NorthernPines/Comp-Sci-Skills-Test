@@ -22,6 +22,7 @@ h2 {
 
 .choice {
     background-color: rgb(73, 206, 216);
+    border-radius: 4px;
 }
 
 .container {
