@@ -50,6 +50,7 @@ var score = 100;
 var finalScore;
 var currentQ = 0;
 
+//when the start button is clicked
 startButton.addEventListener("click", function(){
     displayQuestion();
 
@@ -62,20 +63,23 @@ startButton.addEventListener("click", function(){
     }, 1000);
 })
 
-
-
+//when a multiple choice answer is clicked
 choices.addEventListener('click', function(event){
     var target = event.target.id;
     console.log(target);
 
+    //if answer is correct
     if (target == ansC[currentQ]){
+        //if there is another question
         if (currentQ < (questions.length - 1)){
             currentQ++;
             displayQuestion();
+        //no questions left so display the score
         } else {
             finalScore = score;
             displayFinalScore();
         }
+    //if the answer is wrong
     } else {
         score -= 10;
         if (currentQ < (questions.length - 1)){
@@ -90,7 +94,7 @@ choices.addEventListener('click', function(event){
 
 })
 
-
+//to display the score when the game is over
   function displayFinalScore() {
     scoreEl.hidden = true;
     displayQ.textContent = "Test over";
@@ -100,6 +104,7 @@ choices.addEventListener('click', function(event){
     choices.hidden = true;
 }
 
+//to display each question
 function displayQuestion() {
     displayQ.textContent = questions[currentQ];
 
@@ -110,6 +115,8 @@ function displayQuestion() {
     displayA3.textContent = ans3[currentQ];
     displayA4.textContent = ans4[currentQ];
 
+    //to hide the start button 
     startButton.style.visibility = "hidden";
+    //to get ride of the description of the quiz after you leave the home page
     subtitle.textContent = " ";
 }
