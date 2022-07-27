@@ -42,12 +42,60 @@ var displayA4 = document.querySelector('#a4');
 var startButton = document.querySelector('#start-button');
 var choices = document.querySelector('#answers');
 var subtitle = document.querySelector('#subtitle');
+var scoreEl = document.querySelector('#seconds-left');
+var score = 100;
 
 var currentQ = 0;
 
 startButton.addEventListener("click", function(){
-    displayQuestion();
+    quiz();
 })
+
+function quiz() {
+
+    scoreTimer = setInterval(function () {
+        score = score - 1;
+        scoreEl.textContent = score + "seconds left";
+        
+        displayQuestion();
+
+        choices.addEventListener('click', function(event){
+            var target = event.target.id;
+            console.log(target);
+        
+            if (target == ansC[currentQ]){
+                if (currentQ < (questions.length - 1)){
+                    currentQ++;
+                    displayQuestion();
+                } else {
+                    displayFinalScore();
+                }
+            } else {
+                score -= 10;
+                if (currentQ < (questions.length - 1)){
+                    currentQ++;
+                    displayQuestion();
+                } else {
+                    displayFinalScore();
+                }
+                
+            }
+
+           
+        })
+
+    }, 1000);
+
+}
+
+
+  function displayFinalScore() {
+    displayQ.textContent = "Test over";
+
+    subtitle.textContent = "Your final score is " ;
+    document.querySelector("#enter-name").hidden = false;
+    choices.hidden = true;
+}
 
 function displayQuestion() {
     displayQ.textContent = questions[currentQ];
@@ -61,29 +109,4 @@ function displayQuestion() {
 
     startButton.style.visibility = "hidden";
     subtitle.textContent = " ";
-}
-
-choices.addEventListener('click', function(event){
-    var target = event.target.id;
-    console.log(target);
-
-    if (target == ansC[currentQ]){
-        console.log("correct");
-    } else {
-        //deduct time
-    }
-    if (currentQ < (questions.length - 1)){
-        currentQ++;
-        displayQuestion();
-    } else {
-        displayFinalScore();
-    }
-})
-
-function displayFinalScore() {
-    displayQ.textContent = "Test over";
-
-    subtitle.textContent = "Your final score is " ;
-    document.querySelector("#enter-name").hidden = false;
-    choices.hidden = true;
 }
